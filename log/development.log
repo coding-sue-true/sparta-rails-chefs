@@ -1,0 +1,2192 @@
+  [1m[35m (50.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (24.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (3.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2373456607049957205)[0m
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateChefs (20171122221250)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (32.1ms)[0m  [1m[35mCREATE TABLE "chefs" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (4.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171122221250"]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRecipes (20171122221417)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.5ms)[0m  [1m[35mCREATE TABLE "recipes" ("id" bigserial primary key, "name" character varying, "chef_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171122221417"]]
+  [1m[35m (5.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-11-22 22:29:00.051606"], ["updated_at", "2017-11-22 22:29:00.051606"]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(2373456607049957205)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "chefs" ("first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["first_name", "Soraia"], ["last_name", "Carmo"], ["created_at", "2017-11-22 22:30:01.912400"], ["updated_at", "2017-11-22 22:30:01.912400"]]
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "chefs" ("first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["first_name", "Leonor"], ["last_name", "Carmo"], ["created_at", "2017-11-22 22:31:13.959577"], ["updated_at", "2017-11-22 22:31:13.959577"]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "chefs" ("first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["first_name", "Lolita"], ["last_name", "Smith"], ["created_at", "2017-11-22 22:31:36.123994"], ["updated_at", "2017-11-22 22:31:36.123994"]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (6.7ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "chef_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "scrumble eggs"], ["chef_id", 1], ["created_at", "2017-11-22 22:35:59.999768"], ["updated_at", "2017-11-22 22:35:59.999768"]]
+  [1m[35m (2.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "chef_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "avocato salad"], ["chef_id", 1], ["created_at", "2017-11-22 22:37:50.656029"], ["updated_at", "2017-11-22 22:37:50.656029"]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."chef_id" = $1 LIMIT $2[0m  [["chef_id", 1], ["LIMIT", 11]]
+Started GET "/chefs" for 127.0.0.1 at 2017-11-22 22:39:35 +0000
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.9ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (29.8ms)
+Completed 200 OK in 1046ms (Views: 1010.4ms | ActiveRecord: 8.3ms)
+
+
+Started GET "/chefs/1" for 127.0.0.1 at 2017-11-22 22:39:42 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mChef Load (0.6ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering chefs/show.html.erb within layouts/application
+  Rendered chefs/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 38ms (Views: 23.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-22 22:39:44 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.7ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 38ms (Views: 32.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/chefs/1/edit" for 127.0.0.1 at 2017-11-22 22:39:45 +0000
+Processing by ChefsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering chefs/edit.html.erb within layouts/application
+  Rendered chefs/_form.html.erb (48.8ms)
+  Rendered chefs/edit.html.erb within layouts/application (59.8ms)
+Completed 200 OK in 91ms (Views: 82.5ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/chefs/1" for 127.0.0.1 at 2017-11-22 22:39:50 +0000
+Processing by ChefsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jJ728x/FrLoqeDk7sEYEpNwTlQH7fOmN1Vy9O4gziLyl1SpDwVkIB+e8s2DLsjSZf+ZeUyXuTuUPkOsTMFfX5A==", "chef"=>{"first_name"=>"Soraya", "last_name"=>"Carmo"}, "commit"=>"Update Chef", "id"=>"1"}
+  [1m[36mChef Load (0.8ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[33mUPDATE "chefs" SET "first_name" = $1, "updated_at" = $2 WHERE "chefs"."id" = $3[0m  [["first_name", "Soraya"], ["updated_at", "2017-11-22 22:39:50.418672"], ["id", 1]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/chefs/1
+Completed 302 Found in 16ms (ActiveRecord: 4.3ms)
+
+
+Started GET "/chefs/1" for 127.0.0.1 at 2017-11-22 22:39:50 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering chefs/show.html.erb within layouts/application
+  Rendered chefs/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 21ms (Views: 18.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-22 22:39:51 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 41ms (Views: 38.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/chefs/new" for 127.0.0.1 at 2017-11-22 22:39:53 +0000
+Processing by ChefsController#new as HTML
+  Rendering chefs/new.html.erb within layouts/application
+  Rendered chefs/_form.html.erb (2.4ms)
+  Rendered chefs/new.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 38ms (Views: 28.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/chefs" for 127.0.0.1 at 2017-11-22 22:39:58 +0000
+Processing by ChefsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gD5eNvIDddP5edtcLF0lMm1PzRBLR+oh8DKXMAK63CYmwxfixjg+25Elj6eikHIQB3Fmo6iRqLv9hmXa0P6V+g==", "chef"=>{"first_name"=>"test", "last_name"=>"test"}, "commit"=>"Create Chef"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "chefs" ("first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["first_name", "test"], ["last_name", "test"], ["created_at", "2017-11-22 22:39:58.516440"], ["updated_at", "2017-11-22 22:39:58.516440"]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/chefs/4
+Completed 302 Found in 11ms (ActiveRecord: 3.5ms)
+
+
+Started GET "/chefs/4" for 127.0.0.1 at 2017-11-22 22:39:58 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering chefs/show.html.erb within layouts/application
+  Rendered chefs/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 23ms (Views: 18.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-22 22:40:00 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.6ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 31ms (Views: 26.5ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/chefs/4" for 127.0.0.1 at 2017-11-22 22:40:02 +0000
+Processing by ChefsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"BdQ47WO0PFUKmu8tU9bxr8H0+VD3tJZsYJJ6gI3J6UM5yZ2GRKCxYh3vSehJI+NwAz3CaiSD1z/m/D1zUIQEPg==", "id"=>"4"}
+  [1m[36mChef Load (1.5ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[31mDELETE FROM "chefs" WHERE "chefs"."id" = $1[0m  [["id", 4]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/chefs
+Completed 302 Found in 11ms (ActiveRecord: 4.5ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-22 22:40:02 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 38ms (Views: 34.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-22 22:44:22 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 55ms (Views: 50.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-22 22:44:24 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 30ms (Views: 27.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-22 22:44:25 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  Rendered recipes/index.html.erb within layouts/application (14.2ms)
+Completed 200 OK in 48ms (Views: 26.6ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-22 22:45:19 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  Rendered recipes/index.html.erb within layouts/application (269.8ms)
+Completed 500 Internal Server Error in 276ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `chef' for #<#<Class:0x007fac99df7738>:0x007fac9f41c190>):
+    15:     <% @recipes.each do |recipe| %>
+    16:       <tr>
+    17:         <td><%= recipe.name %></td>
+    18:         <td><%= chef.first_name %></td>
+    19:         <td><%= link_to 'Show', recipe %></td>
+    20:         <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
+    21:         <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+app/views/recipes/index.html.erb:18:in `block in _app_views_recipes_index_html_erb___138259449721790712_70189691495880'
+app/views/recipes/index.html.erb:15:in `_app_views_recipes_index_html_erb___138259449721790712_70189691495880'
+Started GET "/recipes" for 127.0.0.1 at 2017-11-22 22:45:41 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (37.7ms)
+Completed 200 OK in 58ms (Views: 55.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-22 22:47:37 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (7.3ms)
+  Rendered recipes/new.html.erb within layouts/application (15.2ms)
+Completed 200 OK in 87ms (Views: 78.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-22 22:49:09 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (7.7ms)
+  Rendered recipes/new.html.erb within layouts/application (9.8ms)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `map' for nil:NilClass):
+    19:   <div class="field">
+    20:     <%= form.label :chef_id %>
+    21:     <%= form.number_field :chef_id, id: :recipe_chef_id %>
+    22:     <%= collection_select(:recipe, :chef_id, @chefs, :id, :first_name) %>
+    23:   </div>
+    24: 
+    25:   <div class="actions">
+  
+app/views/recipes/_form.html.erb:22:in `block in _app_views_recipes__form_html_erb__3826541311073386831_70189691314520'
+app/views/recipes/_form.html.erb:1:in `_app_views_recipes__form_html_erb__3826541311073386831_70189691314520'
+app/views/recipes/new.html.erb:3:in `_app_views_recipes_new_html_erb___4373314320425012788_70189691225400'
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-22 22:49:52 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (3.6ms)
+  Rendered recipes/new.html.erb within layouts/application (5.6ms)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `map' for nil:NilClass):
+    19:   <div class="field">
+    20:     <%= form.label :chef_id %>
+    21:     <%= form.number_field :chef_id, id: :recipe_chef_id %>
+    22:     <%= collection_select(:recipe, :chef_id, @chefs, :id, :name) %>
+    23:   </div>
+    24: 
+    25:   <div class="actions">
+  
+app/views/recipes/_form.html.erb:22:in `block in _app_views_recipes__form_html_erb__3826541311073386831_70189690149340'
+app/views/recipes/_form.html.erb:1:in `_app_views_recipes__form_html_erb__3826541311073386831_70189690149340'
+app/views/recipes/new.html.erb:3:in `_app_views_recipes_new_html_erb___4373314320425012788_70189641220140'
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-22 22:51:23 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (4.9ms)
+  Rendered recipes/new.html.erb within layouts/application (7.3ms)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `map' for nil:NilClass):
+    19:   <div class="field">
+    20:     <%= form.label :chef_id %>
+    21:     <%= form.number_field :chef_id, id: :recipe_chef_id %>
+    22:     <%= collection_select(:recipe, :chef_id, @chefs, :id, :name) %>
+    23:   </div>
+    24: 
+    25:   <div class="actions">
+  
+app/views/recipes/_form.html.erb:22:in `block in _app_views_recipes__form_html_erb__3826541311073386831_70189641788420'
+app/views/recipes/_form.html.erb:1:in `_app_views_recipes__form_html_erb__3826541311073386831_70189641788420'
+app/views/recipes/new.html.erb:3:in `_app_views_recipes_new_html_erb___4373314320425012788_70189687273500'
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-22 22:52:24 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (3.7ms)
+  Rendered recipes/new.html.erb within layouts/application (5.3ms)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 5.8ms)
+
+
+  
+ActionView::Template::Error (undefined method `map' for nil:NilClass):
+    19:   <div class="field">
+    20:     <%= form.label :chef_id %>
+    21:     <%= form.number_field :chef_id, id: :recipe_chef_id %>
+    22:     <%= collection_select(:recipe, :chef_id, @chefs, :id, :name) %>
+    23:   </div>
+    24: 
+    25:   <div class="actions">
+  
+app/views/recipes/_form.html.erb:22:in `block in _app_views_recipes__form_html_erb__3826541311073386831_70189691942620'
+app/views/recipes/_form.html.erb:1:in `_app_views_recipes__form_html_erb__3826541311073386831_70189691942620'
+app/views/recipes/new.html.erb:3:in `_app_views_recipes_new_html_erb___4373314320425012788_70189691988140'
+Started GET "/recipes" for 127.0.0.1 at 2017-11-22 22:52:28 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (25.4ms)
+Completed 200 OK in 80ms (Views: 69.4ms | ActiveRecord: 7.3ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-22 22:52:30 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (7.1ms)
+  Rendered recipes/new.html.erb within layouts/application (9.4ms)
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `map' for nil:NilClass):
+    19:   <div class="field">
+    20:     <%= form.label :chef_id %>
+    21:     <%= form.number_field :chef_id, id: :recipe_chef_id %>
+    22:     <%= collection_select(:recipe, :chef_id, @chefs, :id, :name) %>
+    23:   </div>
+    24: 
+    25:   <div class="actions">
+  
+app/views/recipes/_form.html.erb:22:in `block in _app_views_recipes__form_html_erb__3826541311073386831_70189654678840'
+app/views/recipes/_form.html.erb:1:in `_app_views_recipes__form_html_erb__3826541311073386831_70189654678840'
+app/views/recipes/new.html.erb:3:in `_app_views_recipes_new_html_erb___4373314320425012788_70189654452660'
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-22 22:53:57 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (6.4ms)
+  Rendered recipes/new.html.erb within layouts/application (8.8ms)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `map' for nil:NilClass):
+    19:   <div class="field">
+    20:     <%= form.label :chef_id %>
+    21: 
+    22:     <%= collection_select(:recipe, :chef_id, @chefs, :id, :name) %>
+    23:   </div>
+    24: 
+    25:   <div class="actions">
+  
+app/views/recipes/_form.html.erb:22:in `block in _app_views_recipes__form_html_erb__3826541311073386831_70189685837420'
+app/views/recipes/_form.html.erb:1:in `_app_views_recipes__form_html_erb__3826541311073386831_70189685837420'
+app/views/recipes/new.html.erb:3:in `_app_views_recipes_new_html_erb___4373314320425012788_70189686048840'
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-22 22:54:27 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (3.1ms)
+  Rendered recipes/new.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 56ms (Views: 54.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-22 22:55:16 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (4.3ms)
+  Rendered recipes/new.html.erb within layouts/application (8.0ms)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 2, expected 5..7)):
+    18: 
+    19:   <div class="field">
+    20:     <%= form.label :chef_id %>
+    21:     <%= collection_select(:chef_id, id: :recipe_chef_id) %>
+    22:   </div>
+    23: 
+    24: 
+  
+app/views/recipes/_form.html.erb:21:in `block in _app_views_recipes__form_html_erb__3826541311073386831_70189690190020'
+app/views/recipes/_form.html.erb:1:in `_app_views_recipes__form_html_erb__3826541311073386831_70189690190020'
+app/views/recipes/new.html.erb:3:in `_app_views_recipes_new_html_erb___4373314320425012788_70189641296460'
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-22 22:55:50 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (2.8ms)
+  Rendered recipes/new.html.erb within layouts/application (4.8ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 4, expected 5..7)):
+    18: 
+    19:   <div class="field">
+    20:     <%= form.label :chef_id %>
+    21:     <%= collection_select(:recipe, :chef_id, @chefs, id: :recipe_chef_id) %>
+    22:   </div>
+    23: 
+    24: 
+  
+app/views/recipes/_form.html.erb:21:in `block in _app_views_recipes__form_html_erb__3826541311073386831_70189641727500'
+app/views/recipes/_form.html.erb:1:in `_app_views_recipes__form_html_erb__3826541311073386831_70189641727500'
+app/views/recipes/new.html.erb:3:in `_app_views_recipes_new_html_erb___4373314320425012788_70189691644420'
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-22 22:56:23 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (4.1ms)
+  Rendered recipes/new.html.erb within layouts/application (6.7ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 4, expected 5..7)):
+    18: 
+    19:   <div class="field">
+    20:     <%= form.label :chef_id %>
+    21:     <%= collection_select(:recipe, :chef_id, @chefs, id: :chef_first_name) %>
+    22:   </div>
+    23: 
+    24: 
+  
+app/views/recipes/_form.html.erb:21:in `block in _app_views_recipes__form_html_erb__3826541311073386831_70189687858060'
+app/views/recipes/_form.html.erb:1:in `_app_views_recipes__form_html_erb__3826541311073386831_70189687858060'
+app/views/recipes/new.html.erb:3:in `_app_views_recipes_new_html_erb___4373314320425012788_70189687895640'
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-22 22:56:38 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (1.9ms)
+  Rendered recipes/new.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 61ms (Views: 59.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2017-11-22 22:56:54 +0000
+Processing by RecipesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Lw1m4BmW9rUlo3bdk9tdHcTFrGVogG7inRutuiLsF34TEMOLPoJ7gjLW0BiJLk/CBgyXX7u3L7EbdepJ/6H6Aw==", "recipe"=>{"name"=>"chips", "chef_id"=>"4"}, "commit"=>"Create Recipe"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (3.9ms)
+  Rendered recipes/new.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 32ms (Views: 25.7ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2017-11-22 22:57:02 +0000
+Processing by RecipesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"YDG/rCVxSrbcK8iD+aCUmIbEpD1YTPvjVnLL5n7IxBhcLBrHAmXHgctebkbjVYZHRA2fB4t7urDQHIwVo4UpZQ==", "recipe"=>{"name"=>"chips", "chef_id"=>"1"}, "commit"=>"Create Recipe"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "chef_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "chips"], ["chef_id", 1], ["created_at", "2017-11-22 22:57:02.956467"], ["updated_at", "2017-11-22 22:57:02.956467"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/recipes/3
+Completed 302 Found in 10ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/recipes/3" for 127.0.0.1 at 2017-11-22 22:57:02 +0000
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (1.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering recipes/show.html.erb within layouts/application
+  Rendered recipes/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 36ms (Views: 26.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-22 22:57:05 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.7ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (8.9ms)
+Completed 200 OK in 34ms (Views: 28.5ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-22 22:57:45 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (3.1ms)
+  Rendered recipes/new.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 42ms (Views: 40.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-22 22:57:52 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (2.4ms)
+  Rendered recipes/new.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 31ms (Views: 27.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-22 22:57:54 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.2ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 26ms (Views: 23.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-22 22:57:56 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (4.5ms)
+  Rendered recipes/new.html.erb within layouts/application (7.7ms)
+Completed 200 OK in 42ms (Views: 40.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2017-11-22 22:58:06 +0000
+Processing by RecipesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4HjppjdviE0hJxDRjOdxP9jKktfLEqaHJwOJkBKERZEvr5J2O9gB38/hrR9FEQhGQR3v05x2Zn5mAr6gDE4OBQ==", "recipe"=>{"name"=>"lalala", "chef_id"=>"2"}, "commit"=>"Create Recipe"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "chef_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "lalala"], ["chef_id", 2], ["created_at", "2017-11-22 22:58:06.138415"], ["updated_at", "2017-11-22 22:58:06.138415"]]
+  [1m[35m (2.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/recipes/4
+Completed 302 Found in 10ms (ActiveRecord: 4.0ms)
+
+
+Started GET "/recipes/4" for 127.0.0.1 at 2017-11-22 22:58:06 +0000
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering recipes/show.html.erb within layouts/application
+  Rendered recipes/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 21ms (Views: 17.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-22 22:58:08 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.1ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.8ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 35ms (Views: 30.6ms | ActiveRecord: 2.1ms)
+
+
+Started DELETE "/recipes/4" for 127.0.0.1 at 2017-11-22 22:58:38 +0000
+Processing by RecipesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"ALbPmpoQckv5FOFS+lv/cK5Twvr5lkRMN4mEpoxo3wY8q2rxvQT/fO5hR5fgru2vbJr5wCqhBR+x58NVUSUyew==", "id"=>"4"}
+  [1m[36mRecipe Load (0.8ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.0ms)[0m  [1m[31mDELETE FROM "recipes" WHERE "recipes"."id" = $1[0m  [["id", 4]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/recipes
+Completed 302 Found in 11ms (ActiveRecord: 5.3ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-22 22:58:38 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 62ms (Views: 57.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-22 22:58:42 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (2.1ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (8.7ms)
+Completed 200 OK in 33ms (Views: 26.2ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/chefs/new" for 127.0.0.1 at 2017-11-22 22:58:44 +0000
+Processing by ChefsController#new as HTML
+  Rendering chefs/new.html.erb within layouts/application
+  Rendered chefs/_form.html.erb (3.5ms)
+  Rendered chefs/new.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 34ms (Views: 28.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/chefs" for 127.0.0.1 at 2017-11-22 22:58:51 +0000
+Processing by ChefsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5jhDWzjEvIOCCaQeh0b24L8jIkwy78t7233VtkJp7HNAxQqPDP/3i+pV8OUJi6HC1R2J/9E5ieHWySdckC2lrw==", "chef"=>{"first_name"=>"Lolada", "last_name"=>"lalalala"}, "commit"=>"Create Chef"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "chefs" ("first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["first_name", "Lolada"], ["last_name", "lalalala"], ["created_at", "2017-11-22 22:58:51.486469"], ["updated_at", "2017-11-22 22:58:51.486469"]]
+  [1m[35m (4.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/chefs/5
+Completed 302 Found in 11ms (ActiveRecord: 5.5ms)
+
+
+Started GET "/chefs/5" for 127.0.0.1 at 2017-11-22 22:58:51 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering chefs/show.html.erb within layouts/application
+  Rendered chefs/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 33ms (Views: 19.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-22 22:58:55 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.6ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 35ms (Views: 28.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/chefs/3" for 127.0.0.1 at 2017-11-22 23:01:38 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering chefs/show.html.erb within layouts/application
+  Rendered chefs/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 75ms (Views: 68.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chefs/3" for 127.0.0.1 at 2017-11-22 23:03:32 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering chefs/show.html.erb within layouts/application
+  Rendered chefs/show.html.erb within layouts/application (3.8ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `chef_id' for nil:NilClass):
+    12: 
+    13: <p>
+    14:   <strong>Chef ID</strong>
+    15:   <%= @recipes.chef_id %>
+    16: </p>
+    17: 
+    18: 
+  
+app/views/chefs/show.html.erb:15:in `_app_views_chefs_show_html_erb___492885968229938506_70189646147800'
+Started GET "/chefs/3" for 127.0.0.1 at 2017-11-22 23:03:43 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mChef Load (0.2ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering chefs/show.html.erb within layouts/application
+  Rendered chefs/show.html.erb within layouts/application (4.5ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `chef_id' for nil:NilClass):
+    12: 
+    13: <p>
+    14:   <strong>Chef ID</strong>
+    15:   <%= @recipe.chef_id %>
+    16: </p>
+    17: 
+    18: 
+  
+app/views/chefs/show.html.erb:15:in `_app_views_chefs_show_html_erb___492885968229938506_70189685411500'
+Started GET "/chefs/3" for 127.0.0.1 at 2017-11-22 23:51:35 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mChef Load (0.9ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering chefs/show.html.erb within layouts/application
+  Rendered chefs/show.html.erb within layouts/application (13.5ms)
+Completed 500 Internal Server Error in 44ms (ActiveRecord: 0.9ms)
+
+
+  
+ActionView::Template::Error (undefined method `chef_id' for nil:NilClass):
+    12: 
+    13: <p>
+    14:   <strong>Chef ID</strong>
+    15:   <%= @recipe.chef_id %>
+    16: </p>
+    17: 
+    18: 
+  
+app/views/chefs/show.html.erb:15:in `_app_views_chefs_show_html_erb___492885968229938506_70189690689400'
+Started GET "/chefs/3" for 127.0.0.1 at 2017-11-22 23:53:07 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering chefs/show.html.erb within layouts/application
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" LIMIT $1[0m  [["LIMIT", 11]]
+  Rendered chefs/show.html.erb within layouts/application (19.8ms)
+Completed 500 Internal Server Error in 60ms (ActiveRecord: 16.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `chef_id' for #<Recipe::ActiveRecord_Relation:0x007fac9f4c7130>):
+    12: 
+    13: <p>
+    14:   <strong>Chef ID</strong>
+    15:   <%= @recipe.chef_id %>
+    16: </p>
+    17: 
+    18: 
+  
+app/views/chefs/show.html.erb:15:in `_app_views_chefs_show_html_erb___492885968229938506_70189691842120'
+Started GET "/chefs/3" for 127.0.0.1 at 2017-11-22 23:53:18 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering chefs/show.html.erb within layouts/application
+  Rendered chefs/show.html.erb within layouts/application (3.1ms)
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 7.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `chef_id' for nil:NilClass):
+    12: 
+    13: <p>
+    14:   <strong>Chef ID</strong>
+    15:   <%= @recipe.chef_id %>
+    16: </p>
+    17: 
+    18: 
+  
+app/views/chefs/show.html.erb:15:in `_app_views_chefs_show_html_erb___492885968229938506_70189655653500'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-22 23:53:59 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 80ms (Views: 74.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/chefs/new" for 127.0.0.1 at 2017-11-22 23:54:03 +0000
+Processing by ChefsController#new as HTML
+  Rendering chefs/new.html.erb within layouts/application
+  Rendered chefs/_form.html.erb (4.0ms)
+  Rendered chefs/new.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 36ms (Views: 31.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-22 23:57:51 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.8ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 41ms (Views: 35.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 00:00:03 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (253.0ms)
+Completed 500 Internal Server Error in 259ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `recipe' for #<#<Class:0x007fac9afbde68>:0x007fac9d75a890>
+Did you mean?  recipe_url):
+    19:         <td><%= link_to 'Show', chef %></td>
+    20:         <td><%= link_to 'Edit', edit_chef_path(chef) %></td>
+    21:         <td><%= link_to 'Destroy', chef, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    22:         <td><%= link_to 'Recipes', recipe, recipes_path %></td>
+    23:       </tr>
+    24:     <% end %>
+    25:   </tbody>
+  
+app/views/chefs/index.html.erb:22:in `block in _app_views_chefs_index_html_erb___2108376494510506150_70189676434800'
+app/views/chefs/index.html.erb:15:in `_app_views_chefs_index_html_erb___2108376494510506150_70189676434800'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 00:00:16 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (289.2ms)
+Completed 500 Internal Server Error in 298ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `recipe' for #<#<Class:0x007fac9afbde68>:0x007fac99d7d2f8>
+Did you mean?  recipe_url):
+    19:         <td><%= link_to 'Show', chef %></td>
+    20:         <td><%= link_to 'Edit', edit_chef_path(chef) %></td>
+    21:         <td><%= link_to 'Destroy', chef, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    22:         <td><%= link_to 'Recipes', recipe, recipes_path(recipe) %></td>
+    23:       </tr>
+    24:     <% end %>
+    25:   </tbody>
+  
+app/views/chefs/index.html.erb:22:in `block in _app_views_chefs_index_html_erb___2108376494510506150_70189646081840'
+app/views/chefs/index.html.erb:15:in `_app_views_chefs_index_html_erb___2108376494510506150_70189646081840'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 00:00:45 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 22ms (Views: 19.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 00:00:46 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (22.4ms)
+Completed 200 OK in 46ms (Views: 34.3ms | ActiveRecord: 7.5ms)
+
+
+Started GET "/recipes/3" for 127.0.0.1 at 2017-11-23 00:00:49 +0000
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering recipes/show.html.erb within layouts/application
+  Rendered recipes/show.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 35ms (Views: 27.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 00:00:57 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.8ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (6.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (18.2ms)
+Completed 200 OK in 55ms (Views: 43.5ms | ActiveRecord: 7.3ms)
+
+
+Started GET "/recipes/3/edit" for 127.0.0.1 at 2017-11-23 00:00:58 +0000
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (1.9ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering recipes/edit.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (4.3ms)
+  Rendered recipes/edit.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 46ms (Views: 36.3ms | ActiveRecord: 1.9ms)
+
+
+Started PATCH "/recipes/3" for 127.0.0.1 at 2017-11-23 00:01:02 +0000
+Processing by RecipesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Bf1ds7t/ytb/n8mXO+5mLJWtVigas3gUcg+3gkKzzxKmrj3d7bU/ZZTULpUSn5sTpDLwcP+KOw21qtY+2BByQw==", "recipe"=>{"name"=>"chips", "chef_id"=>"0"}, "commit"=>"Update Recipe", "id"=>"3"}
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  Rendering recipes/edit.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (4.6ms)
+  Rendered recipes/edit.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 37ms (Views: 27.9ms | ActiveRecord: 1.3ms)
+
+
+Started PATCH "/recipes/3" for 127.0.0.1 at 2017-11-23 00:01:08 +0000
+Processing by RecipesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"HMTca8C6m5Ui0GDYi1PhSdZD+TKAz08oLfQSEoIyrRog2XkA564WojWlxh2RpvOWFIrCCFP4DnurmlXhX39AZw==", "recipe"=>{"name"=>"chips", "chef_id"=>"3"}, "commit"=>"Update Recipe", "id"=>"3"}
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChef Load (0.8ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (1.3ms)[0m  [1m[33mUPDATE "recipes" SET "chef_id" = $1, "updated_at" = $2 WHERE "recipes"."id" = $3[0m  [["chef_id", 3], ["updated_at", "2017-11-23 00:01:08.385691"], ["id", 3]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/recipes/3
+Completed 302 Found in 16ms (ActiveRecord: 5.2ms)
+
+
+Started GET "/recipes/3" for 127.0.0.1 at 2017-11-23 00:01:08 +0000
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.7ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering recipes/show.html.erb within layouts/application
+  Rendered recipes/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 26ms (Views: 21.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 00:01:10 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 46ms (Views: 41.9ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-23 00:01:14 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (4.9ms)
+  Rendered recipes/new.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 35ms (Views: 27.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2017-11-23 00:01:19 +0000
+Processing by RecipesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"PFfjtARa8OT5LDFYdgila4xVuJTX8ab7yx+EE4JYLSXzgJhkCO15dhfqjJa//twSFYLFkICVZgKKHrMjnJJmsQ==", "recipe"=>{"name"=>"test", "chef_id"=>"2"}, "commit"=>"Create Recipe"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChef Load (0.2ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "chef_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "test"], ["chef_id", 2], ["created_at", "2017-11-23 00:01:19.695098"], ["updated_at", "2017-11-23 00:01:19.695098"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/recipes/5
+Completed 302 Found in 8ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/recipes/5" for 127.0.0.1 at 2017-11-23 00:01:19 +0000
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering recipes/show.html.erb within layouts/application
+  Rendered recipes/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 21ms (Views: 18.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 00:01:21 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.8ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.1ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (16.1ms)
+Completed 200 OK in 42ms (Views: 36.4ms | ActiveRecord: 2.1ms)
+
+
+Started DELETE "/recipes/5" for 127.0.0.1 at 2017-11-23 00:01:27 +0000
+Processing by RecipesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"kT6FZ7i6DzFmU5+X1ce+/gfFYbj/Kjzjg1a2esBOoDatIyAMn66CBnEmOVLPMqwhxQxagiwdfbAFOPGJHQNNSw==", "id"=>"5"}
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[31mDELETE FROM "recipes" WHERE "recipes"."id" = $1[0m  [["id", 5]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/recipes
+Completed 302 Found in 9ms (ActiveRecord: 3.6ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 00:01:27 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (9.6ms)
+Completed 200 OK in 30ms (Views: 26.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 00:01:33 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (1.6ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (10.6ms)
+Completed 200 OK in 38ms (Views: 31.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:23:41 +0000
+  [1m[35m (4.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (4.0ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (39.9ms)
+Completed 200 OK in 479ms (Views: 424.3ms | ActiveRecord: 22.9ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:24:51 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.7ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (260.4ms)
+Completed 500 Internal Server Error in 268ms (ActiveRecord: 9.2ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `recipes' for #<#<Class:0x007f8842da0be8>:0x007f88472bd870>
+Did you mean?  recipes_url):
+    20:         <td><%= link_to 'Edit', edit_chef_path(chef) %></td>
+    21:         <td><%= link_to 'Destroy', chef, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    22:     <% end %>
+    23:     <td><%= link_to 'Recipes', recipes, recipes_path %></td>
+    24:     </tr>
+    25:   </tbody>
+    26: </table>
+  
+app/views/chefs/index.html.erb:23:in `_app_views_chefs_index_html_erb__4234100790340249925_70111643169080'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:25:39 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (9.5ms)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `stringify_keys' for "/recipes":String):
+    20:         <td><%= link_to 'Edit', edit_chef_path(chef) %></td>
+    21:         <td><%= link_to 'Destroy', chef, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    22:     <% end %>
+    23:     <td><%= link_to 'Recipes', @recipes, recipes_path %></td>
+    24:     </tr>
+    25:   </tbody>
+    26: </table>
+  
+app/views/chefs/index.html.erb:23:in `_app_views_chefs_index_html_erb__4234100790340249925_70111631639240'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:25:53 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (5.6ms)
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"recipes"}, missing required keys: [:id]):
+    20:         <td><%= link_to 'Edit', edit_chef_path(chef) %></td>
+    21:         <td><%= link_to 'Destroy', chef, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    22:     <% end %>
+    23:     <td><%= link_to 'Recipes', @recipes, recipe_path %></td>
+    24:     </tr>
+    25:   </tbody>
+    26: </table>
+  
+app/views/chefs/index.html.erb:23:in `_app_views_chefs_index_html_erb__4234100790340249925_70111608679840'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:26:28 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (8.5ms)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `stringify_keys' for "/recipes":String):
+    20:         <td><%= link_to 'Edit', edit_chef_path(chef) %></td>
+    21:         <td><%= link_to 'Destroy', chef, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    22:     <% end %>
+    23:     <td><%= link_to 'Recipes', @recipe, recipes_path %></td>
+    24:     </tr>
+    25:   </tbody>
+    26: </table>
+  
+app/views/chefs/index.html.erb:23:in `_app_views_chefs_index_html_erb__4234100790340249925_70111609226400'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:27:40 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (12.1ms)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `stringify_keys' for "/recipes":String):
+    20:         <td><%= link_to 'Edit', edit_chef_path(chef) %></td>
+    21:         <td><%= link_to 'Destroy', chef, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    22:     <% end %>
+    23:     <td><%= link_to 'Recipes', @recipes, recipes_path %></td>
+    24:     </tr>
+    25:   </tbody>
+    26: </table>
+  
+app/views/chefs/index.html.erb:23:in `_app_views_chefs_index_html_erb__4234100790340249925_70111609545560'
+Started POST "/__web_console/repl_sessions/7e527d3f1828ca641ef2b762a253c0c2/trace" for 127.0.0.1 at 2017-11-23 07:28:03 +0000
+Started POST "/__web_console/repl_sessions/7e527d3f1828ca641ef2b762a253c0c2/trace" for 127.0.0.1 at 2017-11-23 07:28:05 +0000
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:28:38 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  Rendered chefs/index.html.erb within layouts/application (1.2ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (/Users/tech-a04/engineering/07.RubyOnRails/chefs/app/views/chefs/index.html.erb:23: syntax error, unexpected '(', expecting ')'
+( link_to 'Recipes', @recipes(recipe), recipes_path );@outpu
+                              ^
+/Users/tech-a04/engineering/07.RubyOnRails/chefs/app/views/chefs/index.html.erb:23: syntax error, unexpected ')', expecting keyword_end
+ecipes(recipe), recipes_path );@output_buffer.safe_append='<
+                              ^):
+  
+app/views/chefs/index.html.erb:23: syntax error, unexpected '(', expecting ')'
+app/views/chefs/index.html.erb:23: syntax error, unexpected ')', expecting keyword_end
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:29:09 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (231.7ms)
+Completed 500 Internal Server Error in 238ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `recipe' for #<#<Class:0x007f88475e7dc0>:0x007f88483b8288>
+Did you mean?  recipe_url):
+    20:         <td><%= link_to 'Edit', edit_chef_path(chef) %></td>
+    21:         <td><%= link_to 'Destroy', chef, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    22:     <% end %>
+    23:     <td><%= link_to 'Recipes', @recipes, recipes_path(recipe) %></td>
+    24:     </tr>
+    25:   </tbody>
+    26: </table>
+  
+app/views/chefs/index.html.erb:23:in `_app_views_chefs_index_html_erb__4234100790340249925_70111652071120'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:29:34 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 33ms (Views: 29.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:31:39 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (9.4ms)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    40:   </thead>
+    41: 
+    42:   <tbody>
+    43:     <% @recipes.each do |recipe| %>
+    44:       <tr>
+    45:         <td><%= recipe.name %></td>
+    46:         <td><%= recipe.chef.chef_id %></td>
+  
+app/views/chefs/index.html.erb:43:in `_app_views_chefs_index_html_erb__4234100790340249925_70111659789860'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:32:09 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.7ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (66.2ms)
+Completed 500 Internal Server Error in 88ms (ActiveRecord: 12.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `chef_id' for #<Chef:0x007f8842fa02b8>):
+    43:     <% @recipes.each do |recipe| %>
+    44:       <tr>
+    45:         <td><%= recipe.name %></td>
+    46:         <td><%= recipe.chef.chef_id %></td>
+    47:         <td><%= link_to 'Show', recipe %></td>
+    48:         <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
+    49:         <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+app/views/chefs/index.html.erb:46:in `block in _app_views_chefs_index_html_erb__4234100790340249925_70111651283300'
+app/views/chefs/index.html.erb:43:in `_app_views_chefs_index_html_erb__4234100790340249925_70111651283300'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:32:19 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.9ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  Rendered chefs/index.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 28ms (Views: 24.3ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:33:17 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  Rendered chefs/index.html.erb within layouts/application (8.7ms)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.7ms)
+
+
+  
+ActionView::Template::Error (undefined method `chef_first_name' for 1:Integer):
+    43:     <% @recipes.each do |recipe| %>
+    44:       <tr>
+    45:         <td><%= recipe.name %></td>
+    46:         <td><%= recipe.chef_id.chef_first_name %></td>
+    47:         <td><%= link_to 'Show', recipe %></td>
+    48:         <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
+    49:         <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+app/views/chefs/index.html.erb:46:in `block in _app_views_chefs_index_html_erb__4234100790340249925_70111642566740'
+app/views/chefs/index.html.erb:43:in `_app_views_chefs_index_html_erb__4234100790340249925_70111642566740'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:33:35 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  Rendered chefs/index.html.erb within layouts/application (14.3ms)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.7ms)
+
+
+  
+ActionView::Template::Error (undefined method `chef_first_name' for #<Recipe:0x007f88485e2108>
+Did you mean?  chef_id_was):
+    43:     <% @recipes.each do |recipe| %>
+    44:       <tr>
+    45:         <td><%= recipe.name %></td>
+    46:         <td><%= recipe.chef_first_name %></td>
+    47:         <td><%= link_to 'Show', recipe %></td>
+    48:         <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
+    49:         <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+app/views/chefs/index.html.erb:46:in `block in _app_views_chefs_index_html_erb__4234100790340249925_70111643232980'
+app/views/chefs/index.html.erb:43:in `_app_views_chefs_index_html_erb__4234100790340249925_70111643232980'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:34:01 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  Rendered chefs/index.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 29ms (Views: 24.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:35:10 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  Rendered chefs/index.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 28ms (Views: 25.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 07:35:13 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (8.6ms)
+Completed 200 OK in 32ms (Views: 26.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 07:37:22 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (18.2ms)
+Completed 200 OK in 44ms (Views: 36.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:37:24 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  Rendered chefs/index.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 31ms (Views: 25.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 07:37:30 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.7ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.1ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 44ms (Views: 35.2ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:39:23 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.6ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  Rendered chefs/index.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 53ms (Views: 48.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:40:31 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.8ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (12.9ms)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.8ms)
+
+
+  
+ActionView::Template::Error (undefined method `relast_name' for #<Chef:0x007f88474ab8a8>
+Did you mean?  last_name
+               last_name?
+               last_name=):
+    15:     <% @chefs.each do |chef| %>
+    16:       <tr>
+    17:         <td><%= chef.first_name %></td>
+    18:         <td><%= chef.relast_name %></td>
+    19:         <td><%= chef.recipe.chef_id %> </td>
+    20:         <td><%= link_to 'Show', chef %></td>
+    21:         <td><%= link_to 'Edit', edit_chef_path(chef) %></td>
+  
+app/views/chefs/index.html.erb:18:in `block in _app_views_chefs_index_html_erb__4234100790340249925_70111644295020'
+app/views/chefs/index.html.erb:15:in `_app_views_chefs_index_html_erb__4234100790340249925_70111644295020'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:40:48 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (10.4ms)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `recipe' for #<Chef:0x007f8847210080>
+Did you mean?  recipes
+               recipes=):
+    16:       <tr>
+    17:         <td><%= chef.first_name %></td>
+    18:         <td><%= chef.last_name %></td>
+    19:         <td><%= chef.recipe.chef_id %> </td>
+    20:         <td><%= link_to 'Show', chef %></td>
+    21:         <td><%= link_to 'Edit', edit_chef_path(chef) %></td>
+    22:         <td><%= link_to 'Destroy', chef, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+app/views/chefs/index.html.erb:19:in `block in _app_views_chefs_index_html_erb__4234100790340249925_70111644807480'
+app/views/chefs/index.html.erb:15:in `_app_views_chefs_index_html_erb__4234100790340249925_70111644807480'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 07:41:31 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."chef_id" = $1 LIMIT $2[0m  [["chef_id", 2], ["LIMIT", 11]]
+  Rendered chefs/index.html.erb within layouts/application (25.7ms)
+Completed 500 Internal Server Error in 40ms (ActiveRecord: 0.9ms)
+
+
+  
+ActionView::Template::Error (undefined method `chef_id' for #<ActiveRecord::Associations::CollectionProxy []>):
+    16:       <tr>
+    17:         <td><%= chef.first_name %></td>
+    18:         <td><%= chef.last_name %></td>
+    19:         <td><%= chef.recipes.chef_id %> </td>
+    20:         <td><%= link_to 'Show', chef %></td>
+    21:         <td><%= link_to 'Edit', edit_chef_path(chef) %></td>
+    22:         <td><%= link_to 'Destroy', chef, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+app/views/chefs/index.html.erb:19:in `block in _app_views_chefs_index_html_erb__4234100790340249925_70111601586160'
+app/views/chefs/index.html.erb:15:in `_app_views_chefs_index_html_erb__4234100790340249925_70111601586160'
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 07:43:13 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  Rendered recipes/index.html.erb within layouts/application (14.1ms)
+Completed 200 OK in 43ms (Views: 36.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 07:43:20 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (27.0ms)
+Completed 200 OK in 45ms (Views: 32.2ms | ActiveRecord: 11.3ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 07:43:38 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  Rendered recipes/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 25ms (Views: 22.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 07:44:07 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 29ms (Views: 25.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 07:44:45 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 27ms (Views: 23.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 07:44:55 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.7ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (9.1ms)
+Completed 200 OK in 29ms (Views: 24.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-23 07:45:36 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (57.6ms)
+  Rendered recipes/new.html.erb within layouts/application (63.3ms)
+Completed 200 OK in 94ms (Views: 88.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-23 07:48:06 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  [1m[36mChef Load (0.6ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered recipes/_form.html.erb (17.1ms)
+  Rendered recipes/new.html.erb within layouts/application (19.1ms)
+Completed 200 OK in 53ms (Views: 29.3ms | ActiveRecord: 11.2ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-23 07:48:17 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered recipes/_form.html.erb (4.9ms)
+  Rendered recipes/new.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 26ms (Views: 22.7ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2017-11-23 07:48:23 +0000
+Processing by RecipesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"o5xkJ4Ai6DPzW0DrrKAVGFDmIdSH064lnXgX8qbtsX2fgcFMpzZlBOQu5i62VQfHki8a7lTk73YbFlABe6BcAA==", "recipe"=>{"name"=>"lalala", "chef_id"=>"3"}, "commit"=>"Create Recipe"}
+  [1m[35m (2.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (6.1ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "chef_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "lalala"], ["chef_id", 3], ["created_at", "2017-11-23 07:48:23.806918"], ["updated_at", "2017-11-23 07:48:23.806918"]]
+  [1m[35m (4.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/recipes/6
+Completed 302 Found in 25ms (ActiveRecord: 13.0ms)
+
+
+Started GET "/recipes/6" for 127.0.0.1 at 2017-11-23 07:48:23 +0000
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  Rendering recipes/show.html.erb within layouts/application
+  Rendered recipes/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 23ms (Views: 17.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 08:28:34 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.7ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.8ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (13.3ms)
+Completed 200 OK in 43ms (Views: 38.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 08:28:36 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (8.7ms)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `recipe' for #<Chef:0x007f8848450650>
+Did you mean?  recipes
+               recipes=):
+    16:       <tr>
+    17:         <td><%= chef.first_name %></td>
+    18:         <td><%= chef.last_name %></td>
+    19:         <td><%= chef.recipe.chef_id %> </td>
+    20:         <td><%= link_to 'Show', chef %></td>
+    21:         <td><%= link_to 'Edit', edit_chef_path(chef) %></td>
+    22:         <td><%= link_to 'Destroy', chef, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+app/views/chefs/index.html.erb:19:in `block in _app_views_chefs_index_html_erb__4234100790340249925_70111613340600'
+app/views/chefs/index.html.erb:15:in `_app_views_chefs_index_html_erb__4234100790340249925_70111613340600'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 08:29:40 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered chefs/index.html.erb within layouts/application (8.2ms)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `recipe' for #<Chef:0x007f884851cbd8>
+Did you mean?  recipes
+               recipes=):
+    16:       <tr>
+    17:         <td><%= chef.first_name %></td>
+    18:         <td><%= chef.last_name %></td>
+    19:         <td><%= chef.recipe.name %> </td>
+    20:         <td><%= link_to 'Show', chef %></td>
+    21:         <td><%= link_to 'Edit', edit_chef_path(chef) %></td>
+    22:         <td><%= link_to 'Destroy', chef, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+app/views/chefs/index.html.erb:19:in `block in _app_views_chefs_index_html_erb__4234100790340249925_70111652859740'
+app/views/chefs/index.html.erb:15:in `_app_views_chefs_index_html_erb__4234100790340249925_70111652859740'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 08:31:00 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  Rendered chefs/index.html.erb within layouts/application (10.8ms)
+Completed 200 OK in 35ms (Views: 30.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 08:31:12 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.7ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."chef_id" = $1 LIMIT $2[0m  [["chef_id", 2], ["LIMIT", 11]]
+  Rendered chefs/index.html.erb within layouts/application (10.2ms)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 1.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `chef_id' for #<ActiveRecord::Associations::CollectionProxy []>):
+    16:       <tr>
+    17:         <td><%= chef.first_name %></td>
+    18:         <td><%= chef.last_name %></td>
+    19:         <td><%= chef.recipes.chef_id %> </td>
+    20:         <td><%= link_to 'Show', chef %></td>
+    21:         <td><%= link_to 'Edit', edit_chef_path(chef) %></td>
+    22:         <td><%= link_to 'Destroy', chef, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+app/views/chefs/index.html.erb:19:in `block in _app_views_chefs_index_html_erb__4234100790340249925_70111613464660'
+app/views/chefs/index.html.erb:15:in `_app_views_chefs_index_html_erb__4234100790340249925_70111613464660'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 08:31:35 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  Rendered chefs/index.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 26ms (Views: 22.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 08:32:16 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  Rendered chefs/index.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 26ms (Views: 22.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 08:33:00 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (13.1ms)
+Completed 200 OK in 40ms (Views: 36.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 08:34:35 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."chef_id" = $1 LIMIT $2[0m  [["chef_id", 2], ["LIMIT", 11]]
+  Rendered chefs/index.html.erb within layouts/application (12.6ms)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 1.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `chef_id' for #<ActiveRecord::Associations::CollectionProxy []>):
+    17:       <tr>
+    18:         <td><%= chef.first_name %></td>
+    19:         <td><%= chef.last_name %></td>
+    20:         <td><%= chef.recipes.chef_id %> </td>
+    21:         <td><%= link_to 'Show', chef %></td>
+    22:         <td><%= link_to 'Edit', edit_chef_path(chef) %></td>
+    23:         <td><%= link_to 'Destroy', chef, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+app/views/chefs/index.html.erb:20:in `block in _app_views_chefs_index_html_erb__4234100790340249925_70111659432020'
+app/views/chefs/index.html.erb:16:in `_app_views_chefs_index_html_erb__4234100790340249925_70111659432020'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 08:34:46 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 29ms (Views: 26.0ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 08:34:58 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.2ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (10.6ms)
+Completed 200 OK in 31ms (Views: 26.0ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 08:35:08 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (1.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.8ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (17.6ms)
+Completed 200 OK in 47ms (Views: 39.0ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 08:35:17 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.7ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.9ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (19.8ms)
+Completed 200 OK in 55ms (Views: 48.7ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/chefs/2" for 127.0.0.1 at 2017-11-23 08:35:20 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mChef Load (0.2ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering chefs/show.html.erb within layouts/application
+  Rendered chefs/show.html.erb within layouts/application (4.9ms)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `chef_id' for nil:NilClass):
+    12: 
+    13: <p>
+    14:   <strong>Chef ID</strong>
+    15:   <%= @recipe.chef_id %>
+    16: </p>
+    17: 
+    18: 
+  
+app/views/chefs/show.html.erb:15:in `_app_views_chefs_show_html_erb__1047072496503569558_70111652902100'
+Started GET "/chefs/2" for 127.0.0.1 at 2017-11-23 08:35:59 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering chefs/show.html.erb within layouts/application
+  Rendered chefs/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 23ms (Views: 19.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/chefs/2/edit" for 127.0.0.1 at 2017-11-23 08:47:44 +0000
+Processing by ChefsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering chefs/edit.html.erb within layouts/application
+  Rendered chefs/_form.html.erb (2.4ms)
+  Rendered chefs/edit.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 33ms (Views: 25.5ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/chefs/2" for 127.0.0.1 at 2017-11-23 08:47:49 +0000
+Processing by ChefsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"v8Y9kt00+S3tUGsi5W8fAAoBlbSwDICX3gA8/vi3qJG/E+9cOQH7mMkfIYo0lLK93Q1DWJo0ixeV0h3fevKVFQ==", "chef"=>{"first_name"=>"Leonoria", "last_name"=>"Carmo"}, "commit"=>"Update Chef", "id"=>"2"}
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (6.1ms)[0m  [1m[33mUPDATE "chefs" SET "first_name" = $1, "updated_at" = $2 WHERE "chefs"."id" = $3[0m  [["first_name", "Leonoria"], ["updated_at", "2017-11-23 08:47:49.473414"], ["id", 2]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/chefs/2
+Completed 302 Found in 17ms (ActiveRecord: 9.1ms)
+
+
+Started GET "/chefs/2" for 127.0.0.1 at 2017-11-23 08:47:49 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering chefs/show.html.erb within layouts/application
+  Rendered chefs/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 21ms (Views: 17.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 08:47:52 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.2ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 47ms (Views: 38.7ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/chefs/3" for 127.0.0.1 at 2017-11-23 08:50:45 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering chefs/show.html.erb within layouts/application
+  Rendered chefs/show.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 31ms (Views: 23.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/chefs/3" for 127.0.0.1 at 2017-11-23 08:56:57 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 7.0ms)
+
+
+  
+NoMethodError (undefined method `chef_id' for #<Chef:0x007f88487b85b8>):
+  
+app/controllers/chefs_controller.rb:15:in `show'
+Started GET "/chefs/3" for 127.0.0.1 at 2017-11-23 08:57:53 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering chefs/show.html.erb within layouts/application
+  Rendered chefs/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 28ms (Views: 16.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 08:57:57 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.2ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (21.5ms)
+Completed 200 OK in 41ms (Views: 31.1ms | ActiveRecord: 7.2ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 08:58:29 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.1ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 29ms (Views: 26.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 08:58:31 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.1ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (19.0ms)
+Completed 200 OK in 42ms (Views: 37.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 09:21:13 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.9ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (14.3ms)
+Completed 200 OK in 51ms (Views: 46.1ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 09:21:58 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (12.4ms)
+Completed 200 OK in 45ms (Views: 40.4ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 09:23:01 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (11.1ms)
+Completed 200 OK in 32ms (Views: 28.2ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-23 09:24:07 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered recipes/_form.html.erb (5.2ms)
+  Rendered recipes/new.html.erb within layouts/application (13.3ms)
+Completed 200 OK in 36ms (Views: 30.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 09:24:10 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (1.5ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (13.7ms)
+Completed 200 OK in 38ms (Views: 31.7ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 09:24:12 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.6ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.8ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (17.3ms)
+Completed 200 OK in 49ms (Views: 39.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/chefs/new" for 127.0.0.1 at 2017-11-23 09:24:14 +0000
+Processing by ChefsController#new as HTML
+  Rendering chefs/new.html.erb within layouts/application
+  Rendered chefs/_form.html.erb (3.9ms)
+  Rendered chefs/new.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 44ms (Views: 34.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/chefs" for 127.0.0.1 at 2017-11-23 09:24:26 +0000
+Processing by ChefsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"24YKLtUMVPMLVihgxOS2DH5tfTqCIM7v+zT21BQeh7N9e0P64Tcf+2MKfJtKKeEuFFPWiWH2jHX2gAQ+xlrObw==", "chef"=>{"first_name"=>"Nick", "last_name"=>"Rothera"}, "commit"=>"Create Chef"}
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "chefs" ("first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["first_name", "Nick"], ["last_name", "Rothera"], ["created_at", "2017-11-23 09:24:26.883394"], ["updated_at", "2017-11-23 09:24:26.883394"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/chefs/6
+Completed 302 Found in 9ms (ActiveRecord: 3.4ms)
+
+
+Started GET "/chefs/6" for 127.0.0.1 at 2017-11-23 09:24:26 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mChef Load (0.2ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  Rendering chefs/show.html.erb within layouts/application
+  Rendered chefs/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 24ms (Views: 21.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 09:24:28 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.7ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.7ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (22.6ms)
+Completed 200 OK in 50ms (Views: 42.8ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2017-11-23 09:24:31 +0000
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  Rendered recipes/_form.html.erb (7.6ms)
+  Rendered recipes/new.html.erb within layouts/application (10.7ms)
+Completed 200 OK in 36ms (Views: 28.9ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2017-11-23 09:24:42 +0000
+Processing by RecipesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"H2yT86SEzYYU6cti5Rwl4lY+KT3gG9eQjYGu7RsBjMfQu+gjqDNEFPovdqws6lybz+lUObd/F2nMgJndBcvHUw==", "recipe"=>{"name"=>"Pork", "chef_id"=>"6"}, "commit"=>"Create Recipe"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "chef_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Pork"], ["chef_id", 6], ["created_at", "2017-11-23 09:24:42.522106"], ["updated_at", "2017-11-23 09:24:42.522106"]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/recipes/7
+Completed 302 Found in 10ms (ActiveRecord: 3.2ms)
+
+
+Started GET "/recipes/7" for 127.0.0.1 at 2017-11-23 09:24:42 +0000
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering recipes/show.html.erb within layouts/application
+  Rendered recipes/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 25ms (Views: 18.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 09:24:44 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.6ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mChef Load (0.6ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (18.7ms)
+Completed 200 OK in 47ms (Views: 40.3ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-11-23 09:24:47 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (1.9ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 46ms (Views: 40.2ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 09:24:49 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.6ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (23.4ms)
+Completed 200 OK in 52ms (Views: 44.6ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/chefs/2/edit" for 127.0.0.1 at 2017-11-23 09:26:43 +0000
+Processing by ChefsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering chefs/edit.html.erb within layouts/application
+  Rendered chefs/_form.html.erb (2.1ms)
+  Rendered chefs/edit.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 42ms (Views: 27.0ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/chefs/2" for 127.0.0.1 at 2017-11-23 09:26:50 +0000
+Processing by ChefsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wkcTMVoH50jtOOk+gYRW5bgb1vY61GdFcywLOtR0hRTCksH/vjLl/cl3o5ZQf/tYbxcAGhDsbMU4/iobVjG4kA==", "chef"=>{"first_name"=>"Leonor", "last_name"=>"Carmo"}, "commit"=>"Update Chef", "id"=>"2"}
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "chefs" SET "first_name" = $1, "updated_at" = $2 WHERE "chefs"."id" = $3[0m  [["first_name", "Leonor"], ["updated_at", "2017-11-23 09:26:50.369142"], ["id", 2]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/chefs/2
+Completed 302 Found in 10ms (ActiveRecord: 3.1ms)
+
+
+Started GET "/chefs/2" for 127.0.0.1 at 2017-11-23 09:26:50 +0000
+Processing by ChefsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mChef Load (0.6ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering chefs/show.html.erb within layouts/application
+  Rendered chefs/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 40ms (Views: 33.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-23 09:26:53 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.2ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.2ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (18.9ms)
+Completed 200 OK in 57ms (Views: 48.8ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-27 15:45:25 +0000
+  [1m[35m (3.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/tech-a04/.rbenv/versions/2.4.1/lib/ruby/gems/2.4.0/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/tech-a04/.rbenv/versions/2.4.1/lib/ruby/gems/2.4.0/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb (9.8ms)
+Completed 200 OK in 46ms (Views: 24.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-27 15:45:31 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.9ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (1.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.6ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mChef Load (0.7ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (101.2ms)
+Completed 200 OK in 466ms (Views: 403.8ms | ActiveRecord: 28.1ms)
+
+
+Started GET "/chefs/new" for 127.0.0.1 at 2017-11-27 15:45:34 +0000
+Processing by ChefsController#new as HTML
+  Rendering chefs/new.html.erb within layouts/application
+  Rendered chefs/_form.html.erb (68.9ms)
+  Rendered chefs/new.html.erb within layouts/application (74.3ms)
+Completed 200 OK in 112ms (Views: 105.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-27 15:45:39 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (6.8ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.6ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (30.8ms)
+Completed 200 OK in 63ms (Views: 47.9ms | ActiveRecord: 8.8ms)
+
+
+Started GET "/chefs/3/edit" for 127.0.0.1 at 2017-11-27 15:45:41 +0000
+Processing by ChefsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mChef Load (1.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering chefs/edit.html.erb within layouts/application
+  Rendered chefs/_form.html.erb (3.0ms)
+  Rendered chefs/edit.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 57ms (Views: 48.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-11-27 15:45:43 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (2.0ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.9ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.6ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (27.4ms)
+Completed 200 OK in 64ms (Views: 55.4ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/recipes/1/edit" for 127.0.0.1 at 2017-11-27 15:45:45 +0000
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRecipe Load (0.8ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering recipes/edit.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (13.9ms)
+  Rendered recipes/edit.html.erb within layouts/application (18.5ms)
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 0.8ms)
+
+
+  
+ActionView::Template::Error (undefined method `map' for nil:NilClass):
+    18: 
+    19:   <div class="field">
+    20:     <%= form.label :chef_id %>
+    21:     <%= collection_select(:recipe, :chef_id, @chefs, :id, :first_name) %>
+    22:   </div>
+    23: 
+    24:   <div class="actions">
+  
+app/views/recipes/_form.html.erb:21:in `block in _app_views_recipes__form_html_erb__880786372531689914_70353585294880'
+app/views/recipes/_form.html.erb:1:in `_app_views_recipes__form_html_erb__880786372531689914_70353585294880'
+app/views/recipes/edit.html.erb:3:in `_app_views_recipes_edit_html_erb___3045121125855245352_70353585100820'
+Started GET "/chefs" for 127.0.0.1 at 2017-11-27 15:48:05 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.6ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 75ms (Views: 70.0ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-27 16:07:24 +0000
+  [1m[35m (4.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/tech-a04/.rbenv/versions/2.4.1/lib/ruby/gems/2.4.0/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/tech-a04/.rbenv/versions/2.4.1/lib/ruby/gems/2.4.0/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb (8.2ms)
+Completed 200 OK in 39ms (Views: 24.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-12-22 22:20:26 +0000
+  [1m[35m (4.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/tech-a04/.rbenv/versions/2.4.1/lib/ruby/gems/2.4.0/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/tech-a04/.rbenv/versions/2.4.1/lib/ruby/gems/2.4.0/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb (8.2ms)
+Completed 200 OK in 39ms (Views: 25.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-12-22 22:20:45 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.9ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (1.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.6ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (103.9ms)
+Completed 200 OK in 525ms (Views: 462.9ms | ActiveRecord: 33.2ms)
+
+
+Started DELETE "/recipes/7" for 127.0.0.1 at 2017-12-22 22:20:56 +0000
+Processing by RecipesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"/AtEMHHIQgCpecM8eqi09ywniMwjLrG5ejpSFzo9lbfAFuFbVtzPN74MZflgXaYo7u6z9vAZ8Or8VBXk53B4yg==", "id"=>"7"}
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[31mDELETE FROM "recipes" WHERE "recipes"."id" = $1[0m  [["id", 7]]
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/recipes
+Completed 302 Found in 12ms (ActiveRecord: 5.0ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2017-12-22 22:20:56 +0000
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (9.6ms)
+Completed 200 OK in 31ms (Views: 24.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-12-22 22:20:58 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.9ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.4ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (17.4ms)
+Completed 200 OK in 42ms (Views: 34.7ms | ActiveRecord: 2.1ms)
+
+
+Started DELETE "/chefs/3" for 127.0.0.1 at 2017-12-22 22:21:01 +0000
+Processing by ChefsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"z3pUjToDsprVKqMThfmrzkEKE5oEvie9wTU0cWreiLvzZ/HmHRc/rcJfBdafDLkRg8MooNeJZu5HW3OCt5Nlxg==", "id"=>"3"}
+  [1m[36mChef Load (0.5ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "chefs" WHERE "chefs"."id" = $1[0m  [["id", 3]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/chefs
+Completed 302 Found in 9ms (ActiveRecord: 3.4ms)
+
+
+Started GET "/chefs" for 127.0.0.1 at 2017-12-22 22:21:01 +0000
+Processing by ChefsController#index as HTML
+  Rendering chefs/index.html.erb within layouts/application
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Chef Load (0.0ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChef Load (0.3ms)[0m  [1m[34mSELECT  "chefs".* FROM "chefs" WHERE "chefs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered chefs/index.html.erb within layouts/application (15.1ms)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 1.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    46:     <% @recipes.each do |recipe| %>
+    47:       <tr>
+    48:         <td><%= recipe.name %></td>
+    49:         <td><%= recipe.chef.first_name %></td>
+    50:         <td><%= recipe.chef_id %></td>
+    51:         <td><%= link_to 'Show', recipe %></td>
+    52:         <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
+  
+app/views/chefs/index.html.erb:49:in `block in _app_views_chefs_index_html_erb__2763094402821937558_70232426181340'
+app/views/chefs/index.html.erb:46:in `_app_views_chefs_index_html_erb__2763094402821937558_70232426181340'
