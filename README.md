@@ -1,0 +1,1 @@
+# sparta-rails-chefs
